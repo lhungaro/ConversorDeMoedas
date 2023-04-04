@@ -1,0 +1,66 @@
+<div >
+  <h4>Cotação e Paridade por periodo</h4>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <div class="row">
+      <div class="col">
+        <label for="input-currency">Moeda:</label>
+        <select id="input-currency" class="form-control" formControlName="moeda">
+            <option *ngFor="let moeda of moedas" [value]="moeda.simbolo">{{moeda.nomeFormatado}} ({{moeda.simbolo}})</option>
+        </select>
+      </div>
+    </div>
+    <div class="row" style="margin-top: 1rem;">
+
+
+      <div class="col">
+        <label for="dataInicial">Data Inicial da cotação</label>
+        <input class="form-control" type="date" id="dataInicial"  formControlName="dataInicial">
+
+      </div>
+      <div class="col">
+        <label for="dataFinal">Data Final da cotação</label>
+        <input class="form-control" type="date" id="dataFinal"  formControlName="dataFinal">
+
+      </div>
+    </div>
+
+    <br>
+    <button  class="btn btn-primary" [disabled]="!form.valid" type="submit">Buscar</button>
+  </form>
+
+  <br><br>
+
+  <h2>Resultado:</h2>
+    <div>
+      <table class="table table-bordered" *ngIf="results!=null">
+        <thead>
+          <tr>
+            <th scope="col">Paridade de compra</th>
+            <th scope="col">Paridade de venda</th>
+            <th scope="col">Cotação de compra</th>
+            <th scope="col">Cotação de venda</th>
+            <th scope="col">Data e hora da cotação</th>
+            <th scope="col">Tipo do boletim</th>
+          </tr>
+        </thead>
+        <tbody class="table-group-divider" *ngFor="let result of results">
+          <tr>
+            <td>R$ {{converteResult(result.paridadeCompra) }}</td>
+            <td>R$ {{converteResult(result.paridadeVenda) }}</td>
+            <td>R$ {{converteResult(result.cotacaoCompra) }}</td>
+            <td>R$ {{converteResult(result.cotacaoVenda) }}</td>
+            <td>{{result.dataHoraCotacao}}</td>
+            <td>{{result.tipoBoletim}}</td>
+          </tr>
+        </tbody>
+        <tbody class="table-group-divider" *ngIf="results.length == 0">
+          <tr >
+            <p style="margin-top: 0.5rem;">
+              A data inserida não gerou resultados
+            </p>
+          </tr>
+        </tbody>
+      </table>
+    <div>
+</div>

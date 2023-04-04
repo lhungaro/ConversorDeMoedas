@@ -1,0 +1,13 @@
+
+form{
+  margin-top: 2rem;
+}
+
+span{
+  font-size: 1.5rem;
+  color: var(--bs-gray-600)
+}
+
+table{
+  margin-top: 1rem;
+}

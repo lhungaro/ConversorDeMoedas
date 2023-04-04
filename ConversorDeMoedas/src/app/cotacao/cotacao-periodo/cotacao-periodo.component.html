@@ -1,0 +1,47 @@
+<div >
+  <form (ngSubmit)="onSubmit()">
+
+    <div class="row">
+      <div class="col">
+        <label for="output-currency">Data Inicial da cotação</label>
+        <input class="form-control" type="date" id="amount" name="amount" [(ngModel)]="dataInicial">
+      </div>
+      <div class="col">
+        <label for="output-currency">Data Final da cotação</label>
+        <input class="form-control" type="date" id="amount" name="amount" [(ngModel)]="dataFinal">
+      </div>
+    </div>
+
+    <br>
+    <button  class="btn btn-primary" type="submit">Buscar</button>
+  </form>
+
+  <br><br>
+
+  <h2>Resultado:</h2>
+    <div>
+      <table class="table table-bordered" *ngIf="results!=null">
+        <thead>
+          <tr>
+            <th scope="col">Cotação de compra</th>
+            <th scope="col">Cotação de venda</th>
+            <th scope="col">Data e hora da cotação</th>
+          </tr>
+        </thead>
+        <tbody class="table-group-divider">
+          <tr *ngFor="let result of results">
+            <td>R$ {{converteResult(result.cotacaoCompra) }}</td>
+            <td>R$ {{converteResult(result.cotacaoVenda) }}</td>
+            <td>{{result.dataHoraCotacao}}</td>
+          </tr>
+        </tbody>
+        <tbody class="table-group-divider" *ngIf="results.length == 0">
+          <tr >
+            <p style="margin-top: 0.5rem;">
+              A data inserida não gerou resultados
+            </p>
+          </tr>
+        </tbody>
+      </table>
+    <div>
+</div>
