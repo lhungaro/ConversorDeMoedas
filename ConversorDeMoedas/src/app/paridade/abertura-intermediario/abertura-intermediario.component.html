@@ -1,4 +1,4 @@
-<div >
+<div style="margin-top: 2rem;">
   <h4>Cotação moeda abertura ou intermediário</h4>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
@@ -22,7 +22,6 @@
   </form>
 
   <br><br>
-
   <h2>Resultado:</h2>
     <div>
       <table class="table table-bordered" *ngIf="results!=null">
@@ -36,8 +35,8 @@
         </thead>
         <tbody class="table-group-divider" *ngFor="let result of results">
           <tr>
-            <td>R$ {{converteResult(result.cotacaoCompra) }}</td>
-            <td>R$ {{converteResult(result.cotacaoVenda) }}</td>
+            <td>  {{converteResult(result.cotacaoCompra) }}</td>
+            <td>  {{converteResult(result.cotacaoVenda) }}</td>
             <td>{{result.dataHoraCotacao}}</td>
             <td>{{result.tipoBoletim}}</td>
           </tr>

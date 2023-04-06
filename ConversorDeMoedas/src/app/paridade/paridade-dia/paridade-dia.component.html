@@ -1,4 +1,4 @@
-<div >
+<div style="margin-top: 2rem;">
   <h4>Cotação e Paridade por dia</h4>
 
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
@@ -39,10 +39,10 @@
         </thead>
         <tbody class="table-group-divider" *ngFor="let result of results">
           <tr>
-            <td>R$ {{converteResult(result.paridadeCompra) }}</td>
-            <td>R$ {{converteResult(result.paridadeVenda) }}</td>
-            <td>R$ {{converteResult(result.cotacaoCompra) }}</td>
-            <td>R$ {{converteResult(result.cotacaoVenda) }}</td>
+            <td>  {{converteResult(result.paridadeCompra) }}</td>
+            <td>  {{converteResult(result.paridadeVenda) }}</td>
+            <td>  {{converteResult(result.cotacaoCompra) }}</td>
+            <td>  {{converteResult(result.cotacaoVenda) }}</td>
             <td>{{result.dataHoraCotacao}}</td>
             <td>{{result.tipoBoletim}}</td>
           </tr>

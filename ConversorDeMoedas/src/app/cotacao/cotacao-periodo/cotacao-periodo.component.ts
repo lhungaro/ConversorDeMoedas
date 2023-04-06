@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { DolarDataService } from 'src/app/services/dolar-data.service';
 
 @Component({
@@ -15,26 +16,28 @@ export class CotacaoPeriodoComponent implements OnInit {
   dataFormatadaFinal!: string;
   results!: any[];
 
-  constructor(private dolarDataService:DolarDataService) { }
+  constructor(
+    private dolarDataService:DolarDataService,
+    private spinner: NgxSpinnerService,
+    ) { }
 
   ngOnInit(): void {
-
+    this.results = [];
 
   }
-
 
   getCotacaoDolarPeriodo(dataIncial : string, dataFinal : string): void {
     this.dolarDataService.getCotacaoDolarPeriodo(dataIncial,dataFinal).subscribe({
       next: (result:any) => {
         this.results = result.value
-
+        this.spinner.show();
       },
       error: (error:any) => {
-        // this.spinner.hide();
+        this.spinner.hide();
         console.log('Erro ao carregar os dados','Erro!');
       },
        complete: () => {
-        console.log(this.results);
+        this.spinner.hide();
        }
     });
   }

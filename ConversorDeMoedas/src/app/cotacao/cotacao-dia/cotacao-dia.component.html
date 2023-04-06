@@ -10,7 +10,7 @@
     <a class="nav-link disabled">Disabled</a>
   </li> -->
 
-  <form (ngSubmit)="onSubmit()">
+  <form (ngSubmit)="onSubmit()" >
 
     <div class="row">
 
@@ -29,10 +29,10 @@
   </form>
 
   <br><br>
-
+  <div >
   <h2>Resultado:</h2>
     <div>
-      <table class="table table-bordered" *ngIf="results!=null">
+      <table class="table table-bordered " *ngIf="results!=null">
         <thead>
           <tr>
             <th scope="col">Cotação de compra</th>
@@ -42,8 +42,8 @@
         </thead>
         <tbody class="table-group-divider" *ngFor="let result of results">
           <tr>
-            <td>R$ {{converteResult(result.cotacaoCompra) }}</td>
-            <td>R$ {{converteResult(result.cotacaoVenda) }}</td>
+            <td>  {{converteResult(result.cotacaoCompra) }}</td>
+            <td>  {{converteResult(result.cotacaoVenda) }}</td>
             <td>{{result.dataHoraCotacao}}</td>
           </tr>
         </tbody>
@@ -56,4 +56,5 @@
         </tbody>
       </table>
     <div>
+  <div>
 </div>

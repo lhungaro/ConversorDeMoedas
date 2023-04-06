@@ -30,7 +30,7 @@ export class CotacaoComponent implements OnInit {
       },
       error: (error:any) => {
         // this.spinner.hide();
-        console.log('Erro ao carregar os dados','Erro!');
+        console.log('Erro ao carregar os eventos','Erro!');
       },
        complete: () => {
         console.log(this.results);
@@ -47,7 +47,7 @@ export class CotacaoComponent implements OnInit {
       },
       error: (error:any) => {
         // this.spinner.hide();
-        console.log('Erro ao carregar os dados','Erro!');
+        console.log('Erro ao carregar os eventos','Erro!');
       },
        complete: () => {
         console.log(this.results);

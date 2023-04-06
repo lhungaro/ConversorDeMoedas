@@ -1,17 +1,17 @@
 <div>
   <h1>Conversor de Moedas</h1>
-  <form (ngSubmit)="onSubmit()">
+  <form  [formGroup]="form" (ngSubmit)="onSubmit()">
 
     <div class="row">
       <div class="col">
         <label for="input-currency">Moeda de Origem:</label>
-        <select id="input-currency" class="form-control" [(ngModel)]="inputCurrency">
+        <select id="input-currency" class="form-control" formControlName="inputCurrency">
             <option *ngFor="let moeda of moedas" [value]="moeda.simbolo">{{moeda.nomeFormatado}} ({{moeda.simbolo}})</option>
         </select>
       </div>
       <div class="col">
         <label for="output-currency">Moeda de Destino:</label>
-        <select id="output-currency" class="form-control" [(ngModel)]="outputCurrency">
+        <select id="output-currency" class="form-control" formControlName="outputCurrency">
           <option *ngFor="let moeda of moedas" [value]="moeda.simbolo">{{moeda.nomeFormatado}} ({{moeda.simbolo}})</option>
         </select>
       </div>
@@ -20,12 +20,10 @@
     <div class="row">
       <div class="col">
          <label for="output-currency">Valor:</label>
-        <input class="form-control" type="number" id="amount" name="amount" [(ngModel)]="value">
+        <input class="form-control" type="number" id="amount" name="amount" formControlName="value">
 
       </div>
       <div class="col">
-        <label for="output-currency">Data</label>
-        <input class="form-control" type="date" id="amount" name="amount" [(ngModel)]="date">
 
       </div>
     </div>
@@ -37,9 +35,11 @@
   </form>
 
   <br><br>
-
-  <h2>Resultado:</h2>
-  <div>{{result}}</div>
+  <div *ngIf="result != 0">
+    <h2>Resultado:</h2>
+    <div>Conversão de <b>{{getNomeCompletoMoedaBySimbolo(moedaEntrada)}}</b> para  <b>{{getNomeCompletoMoedaBySimbolo(moedaSaida)}}</b> </div>
+    <div>Resultado : {{valor}} <b>{{getNomeCompletoMoedaBySimbolo(moedaEntrada)}}</b> é igual {{result}} <b>{{getNomeCompletoMoedaBySimbolo(moedaSaida)}}</b></div>
+  </div>
 </div>
 
 

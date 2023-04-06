@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -15,6 +15,9 @@ import { ParidadeDiaComponent } from './paridade/paridade-dia/paridade-dia.compo
 import { ParidadePeriodoComponent } from './paridade/paridade-periodo/paridade-periodo.component';
 import { AberturaIntermediarioComponent } from './paridade/abertura-intermediario/abertura-intermediario.component';
 import { PeriodoFechamentoComponent } from './paridade/periodo-fechamento/periodo-fechamento.component';
+import { NgxSpinnerModule } from "ngx-spinner";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { TabsModule } from 'ngx-bootstrap/tabs';
 
 const routes: Routes = [
   { path: '', component: ConverterMoedasComponent },
@@ -35,6 +38,10 @@ const routes: Routes = [
   ] },
 ];
 
+interface NgxSpinnerConfig {
+  type?: string;
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,14 +57,18 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
     CommonModule,
     RouterModule.forRoot(routes),
     ReactiveFormsModule,
+    NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' }),
+    TabsModule.forRoot(),
   ],
 
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule { }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { DolarDataService } from 'src/app/services/dolar-data.service';
 
 @Component({
@@ -13,10 +14,12 @@ export class CotacaoDiaComponent implements OnInit {
   dataFormatada!: string;
   results!: any[];
 
-  constructor(private dolarDataService:DolarDataService) { }
+  constructor(
+    private dolarDataService:DolarDataService,
+    private spinner: NgxSpinnerService,
+    ) { }
 
   ngOnInit(): void {
-
 
   }
 
@@ -24,15 +27,14 @@ export class CotacaoDiaComponent implements OnInit {
     this.dolarDataService.getCotacaoDolarData(data).subscribe({
       next: (result:any) => {
         this.results = result.value
-
-
+        this.spinner.show();
       },
       error: (error:any) => {
-        // this.spinner.hide();
+        this.spinner.hide();
         console.log('Erro ao carregar os dados','Erro!');
       },
        complete: () => {
-        console.log(this.results);
+        this.spinner.hide();
        }
     });
   }
@@ -41,15 +43,14 @@ export class CotacaoDiaComponent implements OnInit {
     this.dolarDataService.getCotacaoDolarPeriodo(dataIncial,dataFinal).subscribe({
       next: (result:any) => {
         this.results = result.value
-
-
+        this.spinner.show();
       },
       error: (error:any) => {
-        // this.spinner.hide();
+        this.spinner.hide();
         console.log('Erro ao carregar os dados','Erro!');
       },
        complete: () => {
-        console.log(this.results);
+        this.spinner.hide();
        }
     });
   }
